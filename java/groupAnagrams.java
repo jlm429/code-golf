@@ -1,42 +1,44 @@
-import java.util.LinkedList;
-import java.util.List;
-
+import java.util.*;
 public class groupAnagrams {
-
-    public static void getGroupAnagrams(String[] strs) {
-
-
-        byte[] temp1;
-        byte[] temp2;
-
-        //List<List<String>> return_list= new LinkedList();
-        //List<String> temp=new LinkedList<>();
-
-        //bit vector xor does not work - if str1 = ppp,  str2 = iii xor=0 but not an anagram
-        //similar alternative - just add up ascii or byte values and compare
-        // should be faster on avg. than most sorting algs.
-        // }
-        for (int i=0; i<strs.length-1; i++){
-            System.out.print(strs[i]);
-            System.out.print(strs[i+1]);
-            System.out.println(checkAnagram(strs[i], strs[i+1]));
+    public static List<List<String>> getGroupAnagrams(String[] strs) {
+        Hashtable h=new Hashtable();
+        LinkedList<String> temp;
+        //hash string values
+        for (int i=0; i<strs.length; i++){
+            if (h.get(getStringKey(strs[i]))==null){
+                temp=new LinkedList<>();
+            }
+            else {
+                temp=(LinkedList<String>) h.get(getStringKey(strs[i]));
+            }
+            temp.push(strs[i]);
+            h.put(getStringKey(strs[i]), temp);
         }
+        return (List<List<String>>) (Object) getLists(h);
     }
 
-    private static Boolean checkAnagram(String str1, String str2){
-        if (str1.length()==str2.length()){
-            byte[] s1=str1.getBytes();
-            byte[] s2=str2.getBytes();
-            int b=0;
-            int b2=0;
-            for (int i=0; i<s1.length; i++){
-                b=b+s1[i];
-                b2=b2+s2[i];
+    //for hash key
+    private static String getStringKey(String str1){
+        if (str1.length()>0){
+            char[] chars=str1.toCharArray();
+            Arrays.sort(chars);
+            String str= "";
+            for (int i=0; i<chars.length; i++){
+                str=str+chars[i];
             }
-            if (b2==b){
-                return Boolean.TRUE;
-            }
+            return str;
         }
-        return Boolean.FALSE;
+        return "";
+    }
+
+    //get list of strings from each hash
+    public static LinkedList<LinkedList<String>> getLists(Map mp) {
+        LinkedList<LinkedList<String>> lists= new LinkedList();
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            lists.push((LinkedList<String>) pair.getValue());
+        }
+        return lists;
     }
 }
