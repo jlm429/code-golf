@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class topKFrequency {
@@ -24,14 +23,12 @@ public class topKFrequency {
             temp=lists.removeLast();
             returnList.add(temp.peekLast());
         }
-
         return returnList;
     }
 
     //get list of strings from each hash
     private static LinkedList<LinkedList<Integer>> getLists(Map mp) {
         LinkedList<LinkedList<Integer>> lists= new LinkedList();
-
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
             LinkedList<Integer> list =new LinkedList<>();
