@@ -5,7 +5,9 @@ import java.util.HashMap;
 Optimized Solution using 2 hash tables.
 The first hash table (first) contains the set val as key and index in the second
 hash table (second) as values.  The second hash table allows random access to stored
-values using the getRandom method.  Keys are maintained as a contiguous set of integers.
+values using the getRandom method.  Keys are maintained as a contiguous set of positive
+integers including zero.
+
 When a value is removed, if there is more than one value in the set, the last value is
 re-inserted into the hash table and it's corresponding index in the first is changed.
 
