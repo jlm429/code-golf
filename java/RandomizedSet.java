@@ -1,11 +1,32 @@
 import java.util.HashMap;
 
+
+/*
+Optimized Solution using 2 hash tables.
+The first hash table (first) contains the set val as key and index in the second
+hash table (second) as values.  The second hash table allows random access to stored
+values using the getRandom method.  Keys are maintained as a contiguous set of integers.
+When a value is removed, if there is more than one value in the set, the last value is
+re-inserted into the hash table and it's corresponding index in the first is changed.
+
+Example:
+
+insert 1 True
+insert 3 True
+First Hash Table {1: 0, 3: 1}
+Second Hash Table {0: 1, 1: 3}
+remove 1 (re-insert 3 in second and change index in first)
+First Hash Table {3: 0}
+Second Hash Table {0: 3}
+
+
+ */
 class RandomizedSet {
 
     private HashMap<Integer, Integer> first=new HashMap();
     private HashMap<Integer, Integer> second=new HashMap();
 
-    /** Initialize your data structure here. */
+    /** Constructor */
     public RandomizedSet() {
 
     }
