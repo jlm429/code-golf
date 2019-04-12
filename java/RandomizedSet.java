@@ -9,7 +9,7 @@ values using the getRandom method.  Keys are maintained as a contiguous set of p
 integers including zero.
 
 When a value is removed, if there is more than one value in the set, the last value is
-re-inserted into the hash table and it's corresponding index in the first is changed.
+re-inserted into the hash table and the corresponding index in first is changed.
 
 Example:
 
