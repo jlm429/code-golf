@@ -4,14 +4,10 @@ public class KthSmallestBST {
     private int k;
     private Integer elt=null;
 
-
     public int kthSmallest(TreeNode root, int k) {
-
         inOrder(root);
         return this.elt;
     }
-
-
 
     private void inOrder(TreeNode node){
         if (node.left!=null && this.elt==null){
