@@ -2,15 +2,16 @@ public class KthSmallestBST {
 
     private int count=0;
     private int k;
-    private Integer elt=null;
+    private int elt=-5000;
 
     public int kthSmallest(TreeNode root, int k) {
+	this.k=k;
         inOrder(root);
         return this.elt;
     }
 
     private void inOrder(TreeNode node){
-        if (node.left!=null && this.elt==null){
+        if (node.left!=null && this.elt==-5000){
             inOrder(node.left);
         }
         if (this.count<this.k){
@@ -19,7 +20,7 @@ public class KthSmallestBST {
                 this.elt=node.val;
             }
         }
-        if (node.right!=null && this.elt==null){
+        if (node.right!=null && this.elt==-5000){
             inOrder(node.right);
         }
     }
