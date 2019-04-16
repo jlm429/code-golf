@@ -4,7 +4,6 @@ public class Queue<T> {
     private ListNode3 tail;
 
     public Queue(){
-
     }
 
     public void enQueue(T obj){
@@ -37,5 +36,4 @@ public class Queue<T> {
         if (tail==null) throw new NullPointerException();
         return (T) tail.val;
     }
-
 }
